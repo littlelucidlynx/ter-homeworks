@@ -16,8 +16,6 @@ resource "yandex_vpc_subnet" "prod-a" {
   v4_cidr_blocks = ["10.0.1.0/24"]
 }
 
-
-
 #создаем облачную подсеть zone A
 resource "yandex_vpc_subnet" "develop-a" {
   name           = "develop-ru-central1-a"
@@ -34,29 +32,29 @@ resource "yandex_vpc_subnet" "develop-b" {
   v4_cidr_blocks = ["10.0.2.0/24"]
 }
 
-
 #считываем данные об образе ОС
-data "yandex_compute_image" "ubuntu-2004-lts" {
-  family = "ubuntu-2004-lts"
+data "yandex_compute_image" "ubuntu-2204-lts" {
+  family = "ubuntu-2204-lts"
 }
 
 resource "yandex_compute_instance" "example-a" {
   name        = "netology-develop-platform-web-a"
-  platform_id = "standard-v1"
+  hostname    = "netology-develop-platform-web-a"
+  platform_id = "standard-v3"
 
   zone = "ru-central1-a" #Это очень важно  при создании ресурса в зоне отличной от Зоны по-умолчанию("ru-central1-a")! 
 
   resources {
     cores         = 2
     memory        = 1
-    core_fraction = 5
+    core_fraction = 20
   }
 
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.ubuntu-2004-lts.image_id
+      image_id = data.yandex_compute_image.ubuntu-2204-lts.image_id
       type     = "network-hdd"
-      size     = 5
+      size     = 10
     }
   }
 
@@ -71,27 +69,28 @@ resource "yandex_compute_instance" "example-a" {
     serial-port-enable = 1
     #ssh-keygen -t ed25519  Забудьте уже про rsa ключи!!
     # ubuntu - дефолтный пользователь в ubuntu :)
-    ssh-keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGiVcfW8Wa/DxbBNzmQcwn7hJOj7ji9eoTpFakVnY/AI webinar"
+    ssh-keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBJOodclPNPYPA2pyGpmraEW7K7qzSFNOw7SFk9JxUq"
   }
 
 }
 
 resource "yandex_compute_instance" "example-b" {
   name        = "netology-develop-platform-web-b"
+  hostname    = "netology-develop-platform-web-b"
   platform_id = "standard-v1"
 
   zone = "ru-central1-b" #Это очень важно  при создании ресурса в зоне отличной от Зоны по-умолчанию("ru-central1-a")! 
   resources {
     cores         = 2
     memory        = 1
-    core_fraction = 5
+    core_fraction = 20
   }
 
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.ubuntu-2004-lts.image_id
+      image_id = data.yandex_compute_image.ubuntu-2204-lts.image_id
       type     = "network-hdd"
-      size     = 5
+      size     = 10
     }
   }
 
@@ -102,19 +101,18 @@ resource "yandex_compute_instance" "example-b" {
     nat       = true
   }
 
-
   metadata = {
     serial-port-enable = 1
     #ssh-keygen -t ed25519  Забудьте уже про rsa ключи!!
     # ubuntu - дефолтный пользователь в ubuntu :)
-    ssh-keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGiVcfW8Wa/DxbBNzmQcwn7hJOj7ji9eoTpFakVnY/AI webinar"
+    ssh-keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBJOodclPNPYPA2pyGpmraEW7K7qzSFNOw7SFk9JxUq"
   }
 
 }
 
-
 resource "yandex_compute_instance" "prod-example-a" {
   name        = "netology-prod-platform-web-a"
+  hostname    = "netology-prod-platform-web-a"  
   platform_id = "standard-v1"
 
   zone = "ru-central1-a" #Это очень важно  при создании ресурса в зоне отличной от Зоны по-умолчанию("ru-central1-a")! 
@@ -122,14 +120,14 @@ resource "yandex_compute_instance" "prod-example-a" {
   resources {
     cores         = 2
     memory        = 1
-    core_fraction = 5
+    core_fraction = 20
   }
 
   boot_disk {
     initialize_params {
-      image_id = data.yandex_compute_image.ubuntu-2004-lts.image_id
+      image_id = data.yandex_compute_image.ubuntu-2204-lts.image_id
       type     = "network-hdd"
-      size     = 5
+      size     = 10
     }
   }
 
@@ -144,7 +142,7 @@ resource "yandex_compute_instance" "prod-example-a" {
     serial-port-enable = 1
     #ssh-keygen -t ed25519  Забудьте уже про rsa ключи!!
     # ubuntu - дефолтный пользователь в ubuntu :)
-    ssh-keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGiVcfW8Wa/DxbBNzmQcwn7hJOj7ji9eoTpFakVnY/AI webinar"
+    ssh-keys = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBJOodclPNPYPA2pyGpmraEW7K7qzSFNOw7SFk9JxUq"
   }
 
 }
