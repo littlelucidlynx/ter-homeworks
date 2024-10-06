@@ -1,4 +1,4 @@
-###cloud vars
+##yandex cloud provider vars
 /*
 variable "token" {
   type        = string
@@ -23,11 +23,6 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
-variable "default_cidr" {
-  type        = list(string)
-  default     = ["10.0.1.0/24"]
-  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
-}
 
 variable "vpc_name" {
   type        = string
@@ -35,66 +30,28 @@ variable "vpc_name" {
   description = "VPC network & subnet name"
 }
 
-###ssh vars
-
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBJOodclPNPYPA2pyGpmraEW7K7qzSFNOw7SFk9JxUq"
-  description = "ssh-keygen -t ed25519"
+variable "cidr_a" {
+  type        = list(string)
+  default     = ["10.0.1.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
 }
 
-###hardcode vars
+variable "cidr_b" {
+  type        = list(string)
+  default     = ["10.0.2.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
 
-variable "vm_web_image_family" {
+variable "vm_image_family" {
   type    = string
   default = "ubuntu-2204-lts"
   description = "Image family name"
 }
 
-variable "vm_web_name" {
-  type    = string
-  default = "netology-develop-platform-web"
-  description = "Instance name"
-}
+##ssh
 
-variable "vm_web_platform_id" {
-  type    = string
-  default = "standard-v3"
-  description = "Instance platform ID"
-}
-
-variable "vm_web_cores" {
-  type    = string
-  default = "2"
-  description = "vCPU Cores"
-}
-
-variable "vm_web_memory" {
-  type    = string
-  default = "1"
-  description = "Memory size"
-}
-
-variable "vm_web_core_fraction" {
-  type    = string
-  default = "20"
-  description = "vCPU Core fraction"
-}
-
-variable "vm_web_nat" {
-  type    = bool
-  default = true
-  description = "NAT use"
-}
-
-variable "vm_web_serial_port_enable" {
-  type    = bool
-  default = true
-  description = "Serial console port use"
-}
-
-variable "vm_web_preemptible" {
-  type    = bool
-  default = true
-  description = "Preemptible use"
+variable "vms_ssh_root_key" {
+  type        = string
+  default     = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBJOodclPNPYPA2pyGpmraEW7K7qzSFNOw7SFk9JxUq"
+  description = "ssh-keygen -t ed25519"
 }

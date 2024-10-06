@@ -12,7 +12,7 @@ resource "yandex_vpc_subnet" "develop" {
 data "yandex_compute_image" "ubuntu" {
   family = "ubuntu-2204-lts"
 }
-resource "yandex_compute_instance" "platform" {
+resource "yandex_compute_instance" "vm_web" {
   name        = "netology-develop-platform-web"
   platform_id = "standard-v3"
   resources {
