@@ -12,7 +12,7 @@ data "yandex_compute_image" "ubuntu" {
   family = var.vm_web_image_family
 }
 resource "yandex_compute_instance" "vm_web" {
-  name        = "netology-develop-platform-web"
+  name        = var.vm_web_name
   platform_id = var.vm_web_platform_id
   resources {
     cores         = var.vm_web_cores

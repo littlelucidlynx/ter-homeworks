@@ -1,10 +1,10 @@
 ##vm_web
 
-#variable "vm_web_name" {
-#  type    = string
-#  default = "netology-develop-platform-web"
-#  description = "Instance name"
-#}
+variable "vm_web_name" {
+  type    = string
+  default = "netology-develop-platform-web"
+  description = "Instance name"
+}
 
 variable "vm_web_platform_id" {
   type    = string
@@ -56,11 +56,11 @@ variable "vm_web_zone" {
 
 ##vm_db
 
-#variable "vm_db_name" {
-#  type    = string
-#  default = "netology-develop-platform-db"
-#  description = "Instance name"
-#}
+variable "vm_db_name" {
+  type    = string
+  default = "netology-develop-platform-db"
+  description = "Instance name"
+}
 
 variable "vm_db_platform_id" {
   type    = string
@@ -109,3 +109,40 @@ variable "vm_db_zone" {
   default     = "ru-central1-b"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
+
+/*
+variable "vms_resources" {
+  type = map(object({
+    cores         = number
+    memory        = number
+    core_fraction = number
+    preemptible   = bool
+    nat           = bool
+  }))
+  default = {
+    web = {
+      cores         = 2
+      memory        = 1
+      core_fraction = 20
+      preemptible   = true
+      nat           = true      
+    }
+    db = {
+      cores         = 2
+      memory        = 2
+      core_fraction = 20
+      preemptible   = true
+      nat           = true         
+    }
+  }
+}
+*/
+/*
+variable "metadata" {
+  type = map(string)
+  default = {
+    serial-port-enable = true
+    ssh-keys           = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBJOodclPNPYPA2pyGpmraEW7K7qzSFNOw7SFk9JxUq"
+  }
+}
+*/

@@ -1,10 +1,8 @@
 ##yandex cloud provider vars
-/*
-variable "token" {
-  type        = string
-  description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
-}
-*/
+#variable "token" {
+#  type        = string
+#  description = "OAuth-token; https://cloud.yandex.ru/docs/iam/concepts/authorization/oauth-token"
+#}
 
 variable "cloud_id" {
   type        = string
@@ -50,8 +48,8 @@ variable "vm_image_family" {
 
 ##ssh
 
-variable "vms_ssh_root_key" {
-  type        = string
-  default     = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBJOodclPNPYPA2pyGpmraEW7K7qzSFNOw7SFk9JxUq"
-  description = "ssh-keygen -t ed25519"
-}
+#variable "vms_ssh_root_key" {
+#  type        = string
+#  default     = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICBJOodclPNPYPA2pyGpmraEW7K7qzSFNOw7SFk9JxUq"
+#  description = "ssh-keygen -t ed25519"
+#}
