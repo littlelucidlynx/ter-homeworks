@@ -1,5 +1,3 @@
-##yandex cloud provider vars
-
 #cloud variables
 variable "cloud_id" {
   type        = string
@@ -35,8 +33,6 @@ variable "vm_platform_id" {
   description = "Instance platform ID"
 }
 
-### Basic variables
-
 variable "vm_image_family" {
   type    = string
   default = "ubuntu-2204-lts"
@@ -65,7 +61,6 @@ variable "vm_web_prefix_name" {
   type        = string
   default     = "web"
 }
-
 
 variable "web_resources" {
   type = map(object({
