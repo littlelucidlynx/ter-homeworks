@@ -34,5 +34,4 @@ resource "yandex_compute_instance" "db" {
     subnet_id = yandex_vpc_subnet.develop.id
     nat       = each.value.nat
   }
-  allow_stopping_for_update = true
 }
