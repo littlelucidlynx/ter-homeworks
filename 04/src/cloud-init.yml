@@ -1,13 +1,11 @@
 #cloud-config
 users:
-  - name: ubuntu
+  - name: ${username}
     groups: sudo
     shell: /bin/bash
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
     ssh_authorized_keys:
-      - ${public_key}
+      - ${ssh_public_key}
 package_update: true
 package_upgrade: false
-packages:
- - vim
- - nginx
+packages: ${packages}
