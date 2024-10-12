@@ -7,7 +7,7 @@ variable "network_name" {
 variable "subnet_name" {
   description = "The name of the VPC subnet"
   type        = string
-  default     = "n-e-t-w-o-r-k"
+  default     = "s-u-b-n-e-t-w-o-r-k"
 }
 
 variable "zone" {

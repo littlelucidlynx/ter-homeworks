@@ -1,9 +1,9 @@
 output "out_network" {
-  description = "The ID of the created network"
+  description = "Network information"
   value       = yandex_vpc_network.network
 }
 
 output "out_subnet" {
-  description = "The ID of the created subnet"
+  description = "Subnetwork information"
   value       = yandex_vpc_subnet.subnet
 }
