@@ -1,4 +1,3 @@
-
 # cat ~/.aws/config 
 # [default]
 # region=ru-central1
@@ -9,18 +8,19 @@
 
 
 #For terraform >=1.6<=1.8.5
+
 terraform {
-  required_version = "1.8.4"
+  required_version = ">=1.8.4"
 
   backend "s3" {
     
     shared_credentials_files = ["~/.aws/credentials"]
-    shared_config_files = [ "~/.aws/config" ]
+#    shared_config_files = ["~/.aws/config"]
     profile = "default"
-    region="ru-central1"
+    region = "ru-central1"
 
-    bucket     = "tfstate-develop" #FIO-netology-tfstate
-    key = "production/terraform.tfstate"
+    bucket = "littlelucidlynx-bucket" #FIO-netology-tfstate
+    key = "study/terraform.tfstate"
     
 
     # access_key                  = "..."          #Только для примера! Не хардкодим секретные данные!
@@ -33,29 +33,27 @@ terraform {
     skip_s3_checksum            = true # Необходимая опция при описании бэкенда для Terraform версии 1.6.3 и старше.
 
   endpoints ={
-    dynamodb = "https://docapi.serverless.yandexcloud.net/ru-central1/b1gn3ndpua1j6jaabf79/etnij6ph9brodq9ohs8d"
+    dynamodb = "https://docapi.serverless.yandexcloud.net/ru-central1/b1g393ugq43uqc1r3n8a/etno7gv7lbpp4nj56uaq"
     s3 = "https://storage.yandexcloud.net"
   }
 
-    dynamodb_table              = "tfstate-lock-develop"
+    dynamodb_table = "tfstate"
   }
 
   required_providers {
     yandex = {
       source  = "yandex-cloud/yandex"
-      version = "0.118.0"
+#      version = "0.118.0"
     }
   }
 }
 
 provider "yandex" {
-  # token                    = "do not use!!!"
-  cloud_id                 = "b1gn3ndpua1j6jaabf79"
-  folder_id                = "b1gfu61oc15cb99nqmfe"
-  service_account_key_file = file("~/.authorized_key.json")
-  zone                     = "ru-central1-a" #(Optional) 
+  cloud_id                 = var.cloud_id
+  folder_id                = var.folder_id
+  service_account_key_file = file(var.yc_ssh_key_path)
+  zone                     = var.default_zone 
 }
-
 
 
 # For terraform <1.6.0
